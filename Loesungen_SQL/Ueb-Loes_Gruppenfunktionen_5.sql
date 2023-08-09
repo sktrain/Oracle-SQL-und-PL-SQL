@@ -121,13 +121,13 @@ SELECT manager_id, job_id, sum(salary) "Gehaltssumme"
   ORDER BY manager_id;
 
 -- oder erweitert mit zusätzlichen Spalten
-SELECT   department_id DEPTID, job_id JOB, 
+SELECT   manager_id MANAGER, job_id JOB, 
          SUM(salary),
-         GROUPING(department_id) GRP_DEPT,
+         GROUPING(manager_id) GRP_MANAGER,
          GROUPING(job_id) GRP_JOB
 FROM     employees
-WHERE    department_id < 50
-GROUP BY ROLLUP(department_id, job_id);
+WHERE    manager_id < 130
+GROUP BY ROLLUP(manager_id, job_id);
 
 
 
