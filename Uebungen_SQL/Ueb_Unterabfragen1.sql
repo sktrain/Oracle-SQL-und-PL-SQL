@@ -1,8 +1,8 @@
--- Übung: Unterabfragen  -  Lösungen
+-- Ãœbung: Unterabfragen 
 
--- 1.	Schreiben Sie eine Abfrage, die für den Mitarbeiter Zlotkey, die Nachnamen 
+-- 1.	Schreiben Sie eine Abfrage, die fÃ¼r den Mitarbeiter Zlotkey, die Nachnamen 
 -- sowie das Anstellungsdatum aller Kollegen ausgibt, die in der gleichen 
--- Abteilung arbeiten. Schließen Sie Zlotkey aus.
+-- Abteilung arbeiten. SchlieÃŸen Sie Zlotkey aus.
 
 
 		
@@ -27,13 +27,13 @@
 						
 						
 					
--- 5. Zeigen Sie für alle Mitarbeiter aus der Abteilung "Executive" die 
+-- 5. Zeigen Sie fÃ¼r alle Mitarbeiter aus der Abteilung "Executive" die 
 -- Abteilungsnummer, den Nachnamen und die Jobkennung an.
 
 
 							
 						
--- 6. Zeigen Sie Mitarbeiterkennung, Nachname und Gehalt für alle Mitarbeiter 
+-- 6. Zeigen Sie Mitarbeiterkennung, Nachname und Gehalt fÃ¼r alle Mitarbeiter 
 -- an, die mehr als das Durchschnittsgehalt verdienen und in derselben Abteilung
 -- arbeiten wie ein Mitarbeiter namens "Higgins". Schlieesen Sie "Higgins" aus.
 
@@ -62,15 +62,15 @@
 
 
 -- 10. Zeigen Sie die Mitarbeiter an, die mindestens zweimal den Job gewechselt
--- haben (mind. 2 Einträge in der "Job_History").
+-- haben (mind. 2 EintrÃ¤ge in der "Job_History").
 -- Listen Sie Nachnamen und aktuelle Jobkennung auf.
 
 
         
  				
 						
--- 11. Zeigen Sie die Abteilungsnummer und das minimale Gehalt für die 
--- Abteilung mit dem höchsten Durchschnittsgehalt.
+-- 11. Zeigen Sie die Abteilungsnummer und das minimale Gehalt fÃ¼r die 
+-- Abteilung mit dem hÃ¶chsten Durchschnittsgehalt.
 
 
 						
