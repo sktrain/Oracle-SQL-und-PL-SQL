@@ -8,3 +8,7 @@ oder etwas sportlicher (Basisskript hierzu liegt im Setup-Verzeichnis):
 
 https://blogs.oracle.com/sql/post/how-to-convert-rows-to-columns-and-back-again-with-sql-aka-pivot-and-unpivot
 
+## Aus XML wieder Relational mit xmltable()
+
+https://oracle-base.com/articles/misc/xmltable-convert-xml-data-into-rows-and-columns-using-sql
+
