@@ -16,7 +16,7 @@ FROM	employees;
 
 SELECT 	job_id, 
 			ROUND (MAX (salary), 0)  	"Maximum",
-			ROUND (MIN (salary), 0)   "Minimum",
+			ROUND (MIN (salary), 0)         "Minimum",
 			ROUND (SUM(salary), 0)   	"Summe",
 			ROUND (AVG(salary), 0)		"Durchschnitt"
 FROM	employees
@@ -59,7 +59,7 @@ SELECT manager_id, MIN(salary)
 	ORDER BY MIN(salary) DESC;
 
 
--- oder mit Anzeige des Managernamen (bedingt vorab Self-Join)
+-- oder mit Anzeige des Managernamen (vorab Self-Join)
 SELECT  c.last_name, MIN(i.salary)
 	FROM employees i JOIN employees c
       ON i.manager_id = c.employee_id
@@ -120,17 +120,6 @@ SELECT manager_id, job_id, sum(salary) "Gehaltssumme"
   GROUP BY manager_id, job_id
   ORDER BY manager_id;
 
--- oder erweitert mit zusätzlichen Spalten
-SELECT   manager_id MANAGER, job_id JOB, 
-         SUM(salary),
-         GROUPING(manager_id) GRP_MANAGER,
-         GROUPING(job_id) GRP_JOB
-FROM     employees
-WHERE    manager_id < 130
-GROUP BY ROLLUP(manager_id, job_id);
-
-
-
   
 -- 11. Erweitern Sie Aufgabe 10, so dass zusätzlich angezeigt wird:
 -- Gesamtgehalt der Mitarbeiter unter dem jeweiligen Manager, 
@@ -147,14 +136,13 @@ SELECT manager_id, job_id, sum(salary)  "Gehaltssumme"
 -- ob die Nullwerte in den Spalten aus der Rollup-Auswertung resultieren 
 -- oder auf Basis gespeicherter Nullwerte aus der Tabelle zustande kommen.
 
-SELECT manager_id, job_id, 
-       sum(salary) "Gehaltssumme", 
-       grouping(manager_id) "Null-Resultat",
-       grouping(job_id)  "Null-Resultat"
-  FROM employees
-  WHERE manager_id < 130
-  GROUP BY ROLLUP (manager_id, job_id)
-  ORDER BY manager_id;
+SELECT   manager_id MANAGER, job_id JOB, 
+         SUM(salary),
+         GROUPING(manager_id) GRP_MANAGER,
+         GROUPING(job_id) GRP_JOB
+FROM     employees
+WHERE    manager_id < 130
+GROUP BY ROLLUP(manager_id, job_id);
   
 -- oder erweitert: via Case-Anweisung schönere Ausgabe statt 0 oder 1
 
