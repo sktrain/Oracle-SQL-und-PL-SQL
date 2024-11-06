@@ -1,8 +1,8 @@
--- Übung: Verwendung von Gruppenfunktionen  -  Lösungen
+-- Ãœbung: Verwendung von Gruppenfunktionen  -  LÃ¶sungen
 
--- 1.	Zeigen Sie das höchste Gehalt, das niedrigste Gehalt, die Summe aller 
--- Gehälter und das Durchschnittsgehalt für alle Mitarbeiter an. 
--- Runden Sie das Ergebnis auf die nächste ganze Zahl.
+-- 1.	Zeigen Sie das hÃ¶chste Gehalt, das niedrigste Gehalt, die Summe aller 
+-- GehÃ¤lter und das Durchschnittsgehalt fÃ¼r alle Mitarbeiter an. 
+-- Runden Sie das Ergebnis auf die nÃ¤chste ganze Zahl.
 
 SELECT	ROUND (MAX (salary), 0)  	"Maximum",
 			ROUND (MIN (salary), 0)   	"Minimum",
@@ -11,7 +11,7 @@ SELECT	ROUND (MAX (salary), 0)  	"Maximum",
 FROM	employees;
 
 
--- 2.	Verändern Sie die vorherige Abfrage so, dass die Werte je Jobkennung 
+-- 2.	VerÃ¤ndern Sie die vorherige Abfrage so, dass die Werte je Jobkennung 
 -- berechnet und angezeigt werden. 
 
 SELECT 	job_id, 
@@ -31,8 +31,8 @@ FROM	employees
 GROUP  BY  job_id;
 
 
--- 4.	Zeigen Sie die Differenz zwischen dem niedrigsten und höchsten Gehalt 
--- je Abteilung an. Nennen Sie die Spalte „Differenz“.
+-- 4.	Zeigen Sie die Differenz zwischen dem niedrigsten und hÃ¶chsten Gehalt 
+-- je Abteilung an. Nennen Sie die Spalte â€žDifferenzâ€œ.
 
 SELECT	department_id,   MAX(salary) - MIN(salary)   "Differenz"
 FROM	employees
@@ -47,9 +47,9 @@ FROM	employees;
 
 -- 6.	Zeigen Sie je Managerkennung das Gehalt des unterstellten Angestellten 
 -- mit dem niedrigsten Gehalt an. 
--- Schließen Sie alle Angestellten aus, deren Manager nicht bekannt ist. 
--- Schließen Sie alle Gruppen aus, deren Mindestgehalt 6000 oder weniger 
--- beträgt.
+-- SchlieÃŸen Sie alle Angestellten aus, deren Manager nicht bekannt ist. 
+-- SchlieÃŸen Sie alle Gruppen aus, deren Mindestgehalt 6000 oder weniger 
+-- betrÃ¤gt.
 -- Sortieren Sie die Ausgabe in absteigender Reihenfolge nach dem Gehalt.
 SELECT manager_id, MIN(salary)
 	FROM employees
@@ -70,7 +70,7 @@ SELECT  c.last_name, MIN(i.salary)
   
 
 -- 7.	Zeigen Sie die Anzahl der Mitarbeiter, deren Nachname mit dem 
--- Buchstaben “n“ endet.
+-- Buchstaben â€œnâ€œ endet.
 
 SELECT   count(*) 
 	FROM   employees
@@ -109,9 +109,9 @@ SELECT	department_id,
 	GROUP BY department_id; 
   
   
--- 10. Zeigen Sie für alle Mitarbeiter, deren Managerkennung kleiner 130 ist, 
+-- 10. Zeigen Sie fÃ¼r alle Mitarbeiter, deren Managerkennung kleiner 130 ist, 
 -- Folgendes an:
--- Managerkennung,  Job-Kennung und Gesamtgehalt für jede Jobkennung, 
+-- Managerkennung,  Job-Kennung und Gesamtgehalt fÃ¼r jede Jobkennung, 
 -- sortiert nach der Managerkennung.
 
 SELECT manager_id, job_id, sum(salary) "Gehaltssumme"
@@ -120,7 +120,7 @@ SELECT manager_id, job_id, sum(salary) "Gehaltssumme"
   GROUP BY manager_id, job_id
   ORDER BY manager_id;
 
--- oder erweitert mit zusätzlichen Spalten
+-- oder erweitert mit zusÃ¤tzlichen Spalten
 SELECT   manager_id MANAGER, job_id JOB, 
          SUM(salary),
          GROUPING(manager_id) GRP_MANAGER,
@@ -132,7 +132,7 @@ GROUP BY ROLLUP(manager_id, job_id);
 
 
   
--- 11. Erweitern Sie Aufgabe 10, so dass zusätzlich angezeigt wird:
+-- 11. Erweitern Sie Aufgabe 10, so dass zusÃ¤tzlich angezeigt wird:
 -- Gesamtgehalt der Mitarbeiter unter dem jeweiligen Manager, 
 -- Gesamtgehalt aller Mitarbeiter unter diesen Managern.
 
@@ -156,7 +156,7 @@ SELECT manager_id, job_id,
   GROUP BY ROLLUP (manager_id, job_id)
   ORDER BY manager_id;
   
--- oder erweitert: via Case-Anweisung schönere Ausgabe statt 0 oder 1
+-- oder erweitert: via Case-Anweisung schÃ¶nere Ausgabe statt 0 oder 1
 
 SELECT manager_id, job_id, 
        sum(salary) "Gehaltssumme", 
@@ -172,7 +172,7 @@ SELECT manager_id, job_id,
   GROUP BY ROLLUP (manager_id, job_id)
   ORDER BY manager_id ;
   
--- oder, ebenfalls via Case, aber in den Gruppierungsspalten vernünftig 
+-- oder, ebenfalls via Case, aber in den Gruppierungsspalten vernÃ¼nftig 
 -- angezeigt
 
 SELECT CASE WHEN manager_id is null and grouping(manager_id) = 1
@@ -184,7 +184,7 @@ SELECT CASE WHEN manager_id is null and grouping(manager_id) = 1
                                 and grouping(manager_id) = 1
               THEN ''
             WHEN job_id is null and grouping(job_id) = 1 
-              THEN 'Summe ' || manager_id  -- nächsthöhere Gruppierung anzeigen
+              THEN 'Summe ' || manager_id  -- nÃ¤chsthÃ¶here Gruppierung anzeigen
             WHEN job_id is null and grouping(job_id) = 0 
               THEN 'Null-Gruppe JOB_ID'
             ELSE job_id
@@ -205,8 +205,8 @@ SELECT CASE WHEN manager_id is null and grouping(manager_id) = 1
   
   
   
--- 13. Erweitern Sie die Abfrage aus Aufgabe 12, so dass zusätzlich angezeigt 
--- wird: Gesamtgehalt je Jobkennung unabhängig vom Manager.
+-- 13. Erweitern Sie die Abfrage aus Aufgabe 12, so dass zusÃ¤tzlich angezeigt 
+-- wird: Gesamtgehalt je Jobkennung unabhÃ¤ngig vom Manager.
 
 SELECT  manager_id
         , job_id
@@ -242,14 +242,14 @@ SELECT department_id, manager_id, job_id, sum(salary)  "Gehaltssumme"
   
   
   
--- 15. Erstellen Sie eine Abfrage, um folgende Angaben für alle Abteilungen 
--- anzuzeigen, deren Abteilungsnummer größer als 80 ist:
---  - Gesamtgehalt für jeden Job in der Abteilung
+-- 15. Erstellen Sie eine Abfrage, um folgende Angaben fÃ¼r alle Abteilungen 
+-- anzuzeigen, deren Abteilungsnummer grÃ¶ÃŸer als 80 ist:
+--  - Gesamtgehalt fÃ¼r jeden Job in der Abteilung
 --  - Das Gesamtgehalt
---  - Das Gesamtgehalt für die Städte, in denen sich Abteilungen befinden
---  - Das Geamtgehalt für jeden Job, unabhängig von der Abteilung
---  - Das Gesamtgehalt für jede Abteilung, unabhängig von der Stadt
---  - Das Gesamtgehalt für die Abteilungen, unabhängig von Job-Bezeichnung
+--  - Das Gesamtgehalt fÃ¼r die StÃ¤dte, in denen sich Abteilungen befinden
+--  - Das Geamtgehalt fÃ¼r jeden Job, unabhÃ¤ngig von der Abteilung
+--  - Das Gesamtgehalt fÃ¼r jede Abteilung, unabhÃ¤ngig von der Stadt
+--  - Das Gesamtgehalt fÃ¼r die Abteilungen, unabhÃ¤ngig von Job-Bezeichnung
 --    und Stadt
 
 SELECT l.city, d.department_name, e.job_id, sum(e.salary) sum_salary
@@ -277,7 +277,7 @@ SELECT l.city, d.department_name, e.job_id, sum(e.salary) sum_salary,
 --  - Abteilungsnummer, Jobkennung
 --  - Jobkennung, Managerkennung
 --  wobei die Ausgabe das Maximal- und das Minimalgehalt nach Abteilung, 
---  Tätigkeit und Manager enthalten soll.
+--  TÃ¤tigkeit und Manager enthalten soll.
 SELECT department_id, job_id, manager_id, MAX(salary), MIN(salary)
   FROM employees 
   GROUP BY GROUPING SETS ((department_id, job_id), (job_id, manager_id));
