@@ -1,25 +1,25 @@
--- Übungen zu Indizes
+-- Ãœbungen zu Indizes
 
 -- a) Um die Performanceunterschiede durch den Einsatz eines Index besser 
--- messen zu können, führen Sie bitte die folgenden Schritte durch:
+-- messen zu kÃ¶nnen, fÃ¼hren Sie bitte die folgenden Schritte durch:
 CREATE TABLE big_emp AS SELECT * FROM employees;
 
--- ca. 8-mal durchführen ergibt ca. 50.000 Zeilen
+-- ca. 8-mal durchfÃ¼hren ergibt ca. 50.000 Zeilen
 INSERT INTO big_emp SELECT * FROM big_emp; 
 
 COMMIT;
 
--- neue Spalte anhängen für Primary key
+-- neue Spalte anhÃ¤ngen fÃ¼r Primary key
 ALTER TABLE big_emp ADD (nr number);
 
 -- eindeutige Spaltenwert vergeben
 UPDATE big_emp SET nr=rownum; 
 
 /* nicht unbedingt notwendig
-Führen Sie nun unter SQL*Plus folgende Befehle aus:
+FÃ¼hren Sie nun unter SQL*Plus folgende Befehle aus:
 SET TIMING ON
 SET AUTOTRACE ON
-? kann evtl. zu einem Fehler führen, wenn UTLXPLAN.SQL noch nicht gestartet wurde.
+Dies kann evtl. zu einem Fehler fÃ¼hren, wenn UTLXPLAN.SQL noch nicht gestartet wurde.
 Dann als SYS bei ORACLE folgende Scripte starten:
 @%oracle_home%\rdbms\admin\utlxplan.sql
 @%oracle_home%\sqlplus\admin\plustrce.sql
@@ -34,10 +34,10 @@ SELECT * FROM big_emp WHERE nr=8000;
 CREATE UNIQUE INDEX big_emp_nr_ind ON big_emp (nr);
 
 SELECT * FROM big_emp WHERE nr=8000;
--- Vergleichen Sie die Laufzeit und den Ausführungsplan mit oben.
+-- Vergleichen Sie die Laufzeit und den AusfÃ¼hrungsplan mit oben.
 
--- b) Warum werden die Abfragen bei der zweiten Ausführung meist schneller?
+-- b) Warum werden die Abfragen bei der zweiten AusfÃ¼hrung meist schneller?
 
 
--- Löschen Sie die Tabelle BIG_EMP bitte wieder.
+-- LÃ¶schen Sie die Tabelle BIG_EMP bitte wieder.
 DROP TABLE big_emp;
